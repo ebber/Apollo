@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Audio Player{% endblock %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div id="time-board">
+<span id="timelabel">Time: <span id="timeval">{{ t }}%</span></span>
+<div class="circle-control" id="time-control">
+    <div class="right-clip">
+        <div class="left-slice" id="time-left"></div>
+    </div>
+    <div class="empty-circle"></div>
+    <div class="left-clip">
+        <div class="right-slice" id="time-right"></div>
+    </div>
+</div>
+</div>
+<div id="song-title"></div>
+<div id="volume-board">
+<span id="volumelabel">Volume: <span id="volumeval">{{ volume }}%</span></span>
+<div class="circle-control" id="volume-control">
+    <div class="right-clip">
+        <div class="left-slice" id="volume-left"></div>
+    </div>
+    <div class="empty-circle"></div>
+    <div class="left-clip">
+        <div class="right-slice" id="volume-right"></div>
+    </div>
+</div>
+</div>
+{% endblock %}

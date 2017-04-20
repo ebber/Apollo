@@ -1,0 +1,282 @@
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    background-color: #444;
+}
+
+.black {
+    color: #fff;
+    background-color: #000;
+}
+
+.top-bar {
+    top: 0px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bottom-bar {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.bar-padding {
+    padding: 5px 15px 25px 10px;
+}
+
+.navlink {
+    color: inherit;
+    background-color: inherit; 
+    padding: 16px 8px;
+    width: auto;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.navlink:hover {
+    background-color: #222;
+}
+
+.right {
+    float: right;
+    position: relative;
+    right: 10px;
+}
+
+.loginform {
+    font-size: 16px;
+    padding: 30px 30px 15px 30px;
+}
+
+.loginform input[type=button],
+.loginform input[type=password],
+.loginform input[type=email],
+label
+{
+    font-size: 16px;
+    color: #fff;
+}
+
+.loginform label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.loginform label > span {
+    display: inline-block;
+    float: left;
+    width: 150px;
+}
+
+.loginform input[type=email],
+.loginform input[type=password]
+{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 250px;
+    outline: none;
+    padding: 0px;
+} 
+
+.loginform input[type=email]:focus,
+.loginform input[type=password]:focus
+{
+    border-bottom: 1px solid #deeff5;
+}
+
+.loginform button {
+    background: #484848;
+    border: none;
+    padding: 8px 10px 8px 10px;
+    border-radius: 5px;
+    color: #deeff5;
+}
+    
+.loginform button:hover {
+    background: #9ad8ee;
+    color: #000;
+}
+
+.circle-control {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    -moz-border-radius: 160px;
+    -webkit-border-radius: 160px;
+    border-radius: 160px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+    background-color: black;
+    z-index: 1;
+}
+
+#volume-board {
+    position: absolute;
+    top: 40%;
+    left: 70%;
+    width: 320px;
+}
+
+#time-board {
+    position: absolute;
+    top: 40%;
+    right: 70%;
+    width: 320px;
+}
+
+.empty-circle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 170px;
+    height: 170px;
+    -moz-border-radius: 160px;
+    -webkit-border-radius: 160px;
+    border-radius: 160px;
+    border: 75px solid #333;
+    z-index: 2;
+}
+    
+
+.left-clip {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 320px;
+    height: 320px;
+    clip: rect(0px, 160px, 320px, 0px);
+}
+
+.right-clip {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 320px;
+    height: 320px;
+    clip: rect(0px, 320px, 320px, 160px);
+}
+
+.left-slice {
+    position: absolute;
+    width: 170px;   
+    height: 170px;
+    clip: rect(0px, 160px, 320px, 0px);
+    -moz-border-radius: 160px;
+    -webkit-border-radius: 160px;
+    -border-radius: 160px;
+    -moz-transform: rotate(0.5deg);
+    -webkit-transform: rotate(0.5deg);
+    -o-transform: rotate(0.5deg);
+    transform: rotate(0.5deg);
+    border: 75px solid #66B2FF;
+    z-index: 3;
+}
+
+.right-slice {
+    position: absolute;
+    width: 170px;   
+    height: 170px;
+    clip: rect(0px, 320px, 320px, 160px);
+    -moz-border-radius:160px;
+    -webkit-border-radius:160px;
+    -border-radius: 160px;
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    border: 75px solid #66B2FF;
+    z-index: 3;
+}
+
+#song-title {
+    border: 2px solid black;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    height: 60%;
+    width: 30%;
+}
+    
+.noselect {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#libraryAdd {
+    position: relative;
+    float: right;
+    right: 15px;
+}
+
+#search {
+    position: relative;
+    float: left;
+    left: 5px;
+}
+
+#top {
+    overflow: hidden;
+}
+
+.songtd {
+    padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.songbuttons {
+    width: 100%;
+}
+
+.songbutton {
+    margin-left: 20px;
+    margin-right: 50px;
+}
+
+.titlerow {
+    background-color: #AAA;
+}
+
+.songrow:nth-child(even) {
+    background-color: #666;
+}
+
+.songrow:nth-child(odd) {
+    background-color: #777;
+}
+
+.songrow:hover {
+    background: #333;
+    color: #FFF;
+}
+
+.songbutton {
+    background: inherit;
+    color: inherit;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.songbutton:hover {
+    background: #9ad8ee;
+    color: #000;
+}
+
+#volumelabel, #timelabel {
+    position: relative;
+    color: #FFF;
+    font-size: 24px;
+    text-align: center;
+    width: 320px;
+}

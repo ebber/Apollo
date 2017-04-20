@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='layout.js') }}"></script>
+    {% endblock %}
+</head>
+<body>
+<!-- Top Navbar -->
+<div class="top-bar black">
+    <a href="/" class="navlink button">Home</a>
+    <a href="/library" class="navlink button">Library</a>
+    <a href="/queue" class="navlink button">Queue</a>
+    {% if user is not none %}
+    <a href="/login" id="logout-btn" class="navlink button right">Log Out</a>
+    {% else %}
+    <a href="/login" class="navlink button right">Log In</a>
+    {% endif %}
+</div>
+{% block content %}
+{% endblock %}
+<div class="bottom-bar black">
+    <div class="bar-padding">
+        <span style="float: right">Logged in as: {{ user }}</span>
+    </div>
+</div>
+<input type="hidden" id="csrf" name="csrf_token" value="{{ csrf_token() }}" />
+</body>
+</html>

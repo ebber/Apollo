@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}Music Library{% endblock %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='library.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div id="top">
+<div id="search">
+<form id="searchform" action="/library" method="get">
+    <input type="text" name="query" />
+    <input type="submit" value="Search" />
+</form>
+<label for="playlist">Playlist: </label>
+<select id="playlist-selector" name="playlist" form="searchform">
+    {% for playlist in playlists %}
+        <option value="{{ playlist.pid }}" {% if playlist.selected %}selected="selected"{% endif %}>{{ playlist.title }}</option>
+    {% endfor %}
+<option value="all" {% if allselected %}selected="selected"{% endif %}>All Songs</option>
+</select>
+</div>
+<div id="libraryAdd">
+<form id="downloadform" action="/api/libraryAdd" method="post">
+    <input type="text" name="title" />
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}" />
+    <input type="submit" value="Download and Add" />
+</form>
+</div>
+</div>
+<hr>
+<div id='songs'>
+<table id='songtable'>
+<tr class="titlerow">
+<th>Title</th>
+<th>Artist</th>
+<th>Duration</th>
+<th></th>
+{% for song in songs %}
+<tr class="songrow">
+<td class="songtd">{{ song.title }}</td>
+<td class="songtd">{{ song.artist }}</td>
+<td class="songtd">{{ song.length }}</td>
+<td class="songbuttons"><button class="songbutton queueAdd" data-sid="{{ song.sid }}">Add to Queue</button>
+<button class="songbutton" id="playlistAdd">Add to playlist</button></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
