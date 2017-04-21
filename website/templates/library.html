@@ -31,17 +31,19 @@
 <div id='songs'>
 <table id='songtable'>
 <tr class="titlerow">
-<th>Title</th>
-<th>Artist</th>
-<th>Duration</th>
-<th></th>
+<th class="titlecell">Title</th>
+<th class="titlecell">Artist</th>
+<th class="titlecell">Duration</th>
+<th class="rightextend"></th>
 {% for song in songs %}
 <tr class="songrow">
 <td class="songtd">{{ song.title }}</td>
 <td class="songtd">{{ song.artist }}</td>
 <td class="songtd">{{ song.length }}</td>
-<td class="songbuttons"><button class="songbutton queueAdd" data-sid="{{ song.sid }}">Add to Queue</button>
-<button class="songbutton" id="playlistAdd">Add to playlist</button></td>
+<td class="rightextend">
+<button class="songbutton queueAdd" data-sid="{{ song.sid }}">Add to Queue</button>
+<button class="songbutton" id="playlistAdd">Add to Playlist</button>
+</td>
 </tr>
 {% endfor %}
 </table>

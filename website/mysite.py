@@ -37,4 +37,4 @@ def library():
 
 @mysite.route('/queue', methods=['GET'])
 def queue():
-    return render_template("queue.html", user=session.get('user'))
+    return render_template("queue.html", user=session.get('user'), songs=config.queue)

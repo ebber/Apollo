@@ -231,29 +231,29 @@ label
 .songtd {
     padding-right: 20px;
     padding-left: 20px;
-    text-align: center;
     white-space: nowrap;
+    font-size: 1.1em;
 }
 
-.songbuttons {
+.rightextend {
     width: 100%;
 }
 
-.songbutton {
-    margin-left: 20px;
-    margin-right: 50px;
+.titlerow {
+    background-color: #CCC;
+    padding: 15px;
 }
 
-.titlerow {
-    background-color: #AAA;
+#songtable {
+    border-collapse: collapse;
 }
 
 .songrow:nth-child(even) {
-    background-color: #666;
+    background-color: #777;
 }
 
 .songrow:nth-child(odd) {
-    background-color: #777;
+    background-color: #999;
 }
 
 .songrow:hover {
@@ -266,6 +266,9 @@ label
     color: inherit;
     border: 1px solid #444;
     cursor: pointer;
+    margin-left: 60px;
+    margin-right: 10px;
+    font-size: 0.9em;
 }
 
 .songbutton:hover {
@@ -279,4 +282,16 @@ label
     font-size: 24px;
     text-align: center;
     width: 320px;
+}
+
+#nosongs {
+    color: #FFF;
+    font-size: 1.5em;
+    margin: 50px;
+}
+
+.titlecell {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
 }

@@ -50,6 +50,19 @@ def getPlaylists(userid):
 
     return playlists
 
+def getSong(songid):
+    con = connect()
+    cur = con.cursor()
+    
+    cur.execute('SELECT id, title, artist, length FROM songs WHERE id=%s', (songid,))
+    songtuple = cur.fetchone()
+
+    seconds = songtuple[3] % 60
+    minutes = songtuple[3] / 60
+    length = str(minutes) + ':' + str(seconds)
+
+    return song.Song(songtuple[0], songtuple[1], songtuple[2], length)
+
 def getSongs(query, playlistid=""):
     con = connect()
     cur = con.cursor()

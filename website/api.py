@@ -54,3 +54,16 @@ def setVolume():
 def setTime():
     config.time = request.form['time']
     return ''
+
+@api.route('/api/queueAdd', methods=['POST'])
+def queueAdd():
+    sid = request.form['songid']
+
+    for s in config.queue:
+        if s.sid == int(sid):
+            return '{"type": "error", "error": "Already in Queue"}'
+
+    newsong = database.getSong(sid)
+    config.queue.append(newsong)
+    pos = len(config.queue)
+    return '{"type": "success", "song": "' + newsong.title + '", "position": ' + str(pos) + '}'

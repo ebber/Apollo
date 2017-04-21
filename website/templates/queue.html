@@ -4,4 +4,27 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
+<div id='songs'>
+{% if songs|length > 0 %}
+<table id='songtable'>
+<tr class="titlerow">
+<th class='titlecell'>Position</th>
+<th class='titlecell'>Title</th>
+<th class='titlecell'>Artist</th>
+<th class='titlecell'>Duration</th>
+<td class="rightextend"></td>
+{% for song in songs %}
+<tr class="songrow">
+<td class="songtd">{{ loop.index }}</td>
+<td class="songtd">{{ song.title }}</td>
+<td class="songtd">{{ song.artist }}</td>
+<td class="songtd">{{ song.length }}</td>
+<td class="rightextend"></td>
+</tr>
+{% endfor %}
+{% else %}
+<p id="nosongs">There are no songs currently in the queue</p>
+{% endif %}
+</table>
+</div>
 {% endblock %}
