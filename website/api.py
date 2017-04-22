@@ -67,3 +67,33 @@ def queueAdd():
     config.queue.append(newsong)
     pos = len(config.queue)
     return '{"type": "success", "song": "' + newsong.title + '", "position": ' + str(pos) + '}'
+
+@api.route('/api/playlistAdd', methods=['POST'])
+def playlistAdd():
+    songid = request.form['songid']
+    playlistID = request.form['playlistid']
+
+    user = session['user']
+    userid = database.fetchUser(user)
+    playlists = database.getPlaylists(userid)
+
+    if playlistID not in map(lambda x: str(x.pid), playlists):
+        return '', 400 
+
+    database.addToPlaylist(playlistID, songid)
+    return ''
+
+@api.route('/api/playlistRemove', methods=['POST'])
+def playlistRemove():
+    songid = request.form['songid']
+    playlistID = request.form['playlistid']
+    
+    user = session['user']
+    userid = database.fetchUser(user)
+    playlists = database.getPlaylists(userid)
+
+    if playlistID not in map(lambda x: str(x.pid), playlists):
+        return '', 400 
+
+    database.removeFromPlaylist(playlistID, songid)
+    return ''

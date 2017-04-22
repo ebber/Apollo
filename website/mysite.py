@@ -20,20 +20,32 @@ def library():
 
     playlistID = request.args.get('playlist')
     query = request.args.get('query')
+    order = request.args.get('sort')
+    toreverse = request.args.get('reversed')
 
     if query is None:
         query = ''
 
-    if playlistID is None or playlistID == "all":
+    if playlistID is None or playlistID == "all" or playlistID not in map(lambda x: str(x.pid), playlists):
         songs = database.getSongs(query)
         allselected = True
-    elif playlistID not in map(lambda x: str(x.pid), playlists):
-        return '', 400
     else:
         songs = database.getSongs(query, playlistID)
         allselected = False
 
-    return render_template("library.html", user=user, playlists=playlists, songs=songs, allselected=allselected)
+    if toreverse == 'true':
+        toreverse = True
+    else:
+        toreverse = False
+
+    if order == 'title':
+        songs = sorted(songs, key=lambda x: x.title, reverse=toreverse)
+    if order == 'artist':
+        songs = sorted(songs, key=lambda x: x.artist, reverse=toreverse)
+    if order == 'duration':
+        songs = sorted(songs, key=lambda x: x.get_length(), reverse=toreverse)
+
+    return render_template("library.html", user=user, playlists=playlists, songs=songs, allselected=allselected, pid=playlistID)
 
 @mysite.route('/queue', methods=['GET'])
 def queue():

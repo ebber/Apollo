@@ -83,3 +83,38 @@ def getSongs(query, playlistid=""):
         songs.append(song.Song(row[0], row[1], row[2], length))
 
     return songs    
+
+def addToPlaylist(playlistid, songid):
+    con = connect()
+    cur = con.cursor()
+
+    cur.execute('INSERT IGNORE INTO contains(playlistID, songid) VALUES(%s, %s)', (playlistid, songid))
+    con.commit()
+
+def removeFromPlaylist(playlistid, songid):
+    con = connect()
+    cur = con.cursor()
+
+    cur.execute('SELECT COUNT(*) FROM contains WHERE playlistID=%s AND NOT songid=%s', (playlistid, songid))
+    numleft = cur.fetchone()[0]
+
+    cur.execute('DELETE FROM contains WHERE playlistID=%s AND songid=%s', (playlistid, songid))
+    con.commit()
+
+    if numleft == 0:
+        deletePlaylist(playlistid)
+
+def createPlaylist(userid, title):
+    con = connect()
+    cur = con.cursor()
+    
+    cur.execute('INSERT INTO playlists(userid, title) VALUES(%s, %s)', (userid, title))
+    con.commit()
+
+def deletePlaylist(playlistid):
+    con = connect()
+    cur = con.cursor()
+
+    cur.execute('DELETE FROM playlists WHERE id=%s;', (playlistid,)) 
+    cur.execute('DELETE FROM contains WHERE playlistid=%s', (playlistid,))
+    con.commit()

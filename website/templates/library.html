@@ -27,13 +27,12 @@
 </form>
 </div>
 </div>
-<hr>
 <div id='songs'>
 <table id='songtable'>
 <tr class="titlerow">
-<th class="titlecell">Title</th>
-<th class="titlecell">Artist</th>
-<th class="titlecell">Duration</th>
+<th class="titlecell order-header">Title</th>
+<th class="titlecell order-header">Artist</th>
+<th class="titlecell order-header">Duration</th>
 <th class="rightextend"></th>
 {% for song in songs %}
 <tr class="songrow">
@@ -42,7 +41,16 @@
 <td class="songtd">{{ song.length }}</td>
 <td class="rightextend">
 <button class="songbutton queueAdd" data-sid="{{ song.sid }}">Add to Queue</button>
-<button class="songbutton" id="playlistAdd">Add to Playlist</button>
+{% if allselected %}
+<select class="songbutton playlistAdd" data-sid="{{ song.sid }}">
+<option selected disabled hidden>Add to Playlist</option>
+{% for playlist in playlists %}
+    <option value="{{ playlist.pid }}">{{ playlist.title }}</option>
+{% endfor %}
+</select>
+{% else %}
+<button class="songbutton playlistRemove" data-sid="{{ song.sid }}" data-pid="{{ pid }}">Remove From Playlist</button>
+{% endif %}
 </td>
 </tr>
 {% endfor %}
