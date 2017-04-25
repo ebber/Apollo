@@ -45,16 +45,6 @@ def logout():
     session.pop('user', None)
     return render_template('login.html', error=None)
 
-@api.route('/api/setVolume', methods=['POST'])
-def setVolume():
-    config.volume = request.form['volume']
-    return ''
-
-@api.route('/api/setTime', methods=['POST'])
-def setTime():
-    config.time = request.form['time']
-    return ''
-
 @api.route('/api/queueAdd', methods=['POST'])
 def queueAdd():
     sid = request.form['songid']
@@ -97,3 +87,37 @@ def playlistRemove():
 
     database.removeFromPlaylist(playlistID, songid)
     return ''
+
+
+###Web hooks:
+
+#Set volume here
+@api.route('/api/setVolume', methods=['POST'])
+def setVolume():
+    config.volume = request.form['volume']
+    return ''
+
+#Set song time here
+@api.route('/api/setTime', methods=['POST'])
+def setTime():
+    config.time = request.form['time']
+    return ''
+
+#Unpause here
+@api.route('/api/play', methods=['POST'])
+def play():
+    return ''
+
+#Pause here
+@api.route('/api/pause', methods=['POST'])
+def pause():
+    return ''
+
+#Play next song here
+@api.route('/api/nextSong', methods=['POST'])
+def pause():
+    return ''
+
+#Download song here:
+def download(url):
+    pass
