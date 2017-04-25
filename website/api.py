@@ -115,7 +115,7 @@ def pause():
 
 #Play next song here
 @api.route('/api/nextSong', methods=['POST'])
-def pause():
+def nextSong():
     return ''
 
 #Download song here:
