@@ -24,7 +24,7 @@ def addUser(email, password):
     salt = bcrypt.gensalt()
     pwhash = bcrypt.hashpw(password.encode('utf8'), salt)
 
-    cur.execute('INSERT INTO users(email, pwhash) VALUES(%s, %s)', (email, pwhash))
+    cur.execute('INSERT INTO users(email, pwhash, priviledges) VALUES(%s, %s, a)', (email, pwhash))
     con.commit()
 
 def validateUser(email, password):
