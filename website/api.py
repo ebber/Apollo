@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
+import json
 import database
 import config
 
@@ -88,6 +89,10 @@ def playlistRemove():
     database.removeFromPlaylist(playlistID, songid)
     return ''
 
+@api.route('/api/queueUpdate', methods=['POST'])
+def queueUpdate():
+    config.queue = map(lambda x: database.getSong(x), request.form.getlist('queue[]'))
+    return ''
 
 ###Web hooks:
 
