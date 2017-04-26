@@ -94,6 +94,14 @@ def queueUpdate():
     config.queue = map(lambda x: database.getSong(x), request.form.getlist('queue[]'))
     return ''
 
+@api.route('/api/createPlaylist', methods=['POST'])
+def createPlaylist():
+    title = request.form['title']
+    userid = database.fetchUser(session['user'])
+
+    database.createPlaylist(userid, title)
+    return ''
+
 ###Web hooks:
 
 #Set volume here

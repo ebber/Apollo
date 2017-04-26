@@ -333,3 +333,12 @@ label
     background-color: #CCC;
     border-radius: 3px;
 }
+
+#createform {
+    margin-top: 10px;
+}
+
+#createform input {
+    display: none;
+    margin-top: 5px;
+}

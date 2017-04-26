@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#playlist-selector').change(function() {
         $('#searchform').submit();
     });
+
     $('.queueAdd').on("click", function() {
         var token = $("#csrf").val();
         var sid = $(this).data("sid");
@@ -18,6 +19,7 @@ $(document).ready(function() {
             }
         });
     });
+
     $('.playlistAdd').on('change', function() {
         var token = $("#csrf").val();
         var sid = $(this).data("sid");
@@ -27,10 +29,11 @@ $(document).ready(function() {
             url: 'api/playlistAdd',
             data: {"csrf_token": token, "songid": sid, "playlistid": pid},
             success: function() {
-                alert('Added to playlist successfully');
+                location.reload();
             }
         });
     });
+
     $('.playlistRemove').on('click', function() {
         var token = $("#csrf").val();
         var sid = $(this).data("sid");
@@ -44,6 +47,7 @@ $(document).ready(function() {
             }
         });
     });
+
     $('.order-header').on("click", function() {
         var val = "sort=" + $(this).html().toLowerCase();
 
@@ -68,5 +72,18 @@ $(document).ready(function() {
         newurl = newurl.replace(anysort, '');
         var separator = newurl.indexOf('?') !== -1 ? "&" : "?";
         window.location.href = newurl + separator + val + endurl;
+    });
+
+    $('#createbutton').click(function(e) {
+        e.preventDefault();
+
+        if(!$('#createform input[type=text]').val()) {
+            $('#createform input').css('display', 'block');
+        } else {
+            $('#createform input').css('display', 'none');
+            $.post($('#createform').attr('action'), $('#createform').serialize(), function() {
+                location.reload();
+            });
+        }
     });
 });
