@@ -1,4 +1,5 @@
 import musicplayer, sys, os, fnmatch, random, pprint, Tkinter, logging
+from subprocess import call
 
 class playableSong:
 	def __init__(self, fn):
@@ -61,6 +62,11 @@ class mPlayer:
     self.queue.insert(self.song_index, filename)
     self.song_index -=1
     self.skip()
+
+  def change_volume(self, new_volume):
+	#change volume
+	assert(new_volume >=0 and new_volume <=100)
+	call(["amixer", "-D", "pulse", "sset", "Master", str(new_volume)+"%"])
 
 
 

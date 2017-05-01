@@ -13,6 +13,12 @@ class spotify_metaRetriever:
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ch.setFormatter(formatter)
+
+    fhdlr = logging.FileHandler('logs/sporitfyLog.log')
+    fhdlr.setLevel(logging.DEBUG)
+    fhdlr.setFormatter(formatter)
+
+    self.logger.addHandler(fhdlr)
     self.logger.addHandler(ch)
     self.sp = spotipy.Spotify()
 

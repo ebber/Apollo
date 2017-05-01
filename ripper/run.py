@@ -1,11 +1,13 @@
 import os
 
 import config
+from ripper.ytRipper import Ripper
 from model.song import Song
 from tagging.tagger import Tagger
 import logging
 
 tagger = Tagger()
+ripper = Ripper()
 notDone = True
 
 logger = logging.getLogger("mainLoopLogger")
@@ -34,13 +36,7 @@ def tag_continous(dir = config.DIR_UNTAGGED):
 
 def rip_playlist(playlist_url):
     logger.info("ripping playlist " + playlist_url)
-    #youtube-dl  --extract-audio --yes-playlist --audio-format mp3 -o '%(playlist)s/%(title)s.%(ext)s'
-    args = ["--extract-audio", "--yes-playlist", "--audio-format mp3", "-o 'songs/untaggedSongs/%(title)s.%(ext)s'", playlist_url]
-    command = "youtube-dl"
-    for arg in args:
-        command += " " + arg
-    print(command)
-    os.system(command)
+    ripper.rip(playlist_url)
 
 def print_prompt():
     help_text = "help\n"
