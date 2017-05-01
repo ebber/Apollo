@@ -1,7 +1,7 @@
-from model.song import Song
+from ripper.model.song import Song
 import logging
 
-from tagging.spotify_meta_retriever import spotify_metaRetriever
+from ripper.tagging.spotify_meta_retriever import spotify_metaRetriever
 
 class Tagger():
 
@@ -14,6 +14,11 @@ class Tagger():
 
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         ch.setFormatter(formatter)
+        fhdlr = logging.FileHandler('logs/taggerLog.log')
+        fhdlr.setLevel(logging.DEBUG)
+        fhdlr.setFormatter(formatter)
+
+        self.logger.addHandler(fhdlr)
         self.logger.addHandler(ch)
 
     def tag_song(self, song):
