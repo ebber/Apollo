@@ -18,6 +18,11 @@
     {% endfor %}
 <option value="all" {% if allselected %}selected="selected"{% endif %}>All Songs</option>
 </select>
+<form id="createform" action="/api/createPlaylist" method="post">
+<button id="createbutton">Create Playlist</button><br />
+<input type="text" name="title" value="" />
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+</form>
 </div>
 <div id="libraryAdd">
 <form id="downloadform" action="/api/libraryAdd" method="post">
@@ -43,7 +48,7 @@
 <button class="songbutton queueAdd" data-sid="{{ song.sid }}">Add to Queue</button>
 {% if allselected %}
 <select class="songbutton playlistAdd" data-sid="{{ song.sid }}">
-<option selected disabled hidden>Add to Playlist</option>
+<option selected disabled hidden class="topoption">Add to Playlist</option>
 {% for playlist in playlists %}
     <option value="{{ playlist.pid }}">{{ playlist.title }}</option>
 {% endfor %}

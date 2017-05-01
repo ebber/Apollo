@@ -2,6 +2,8 @@
 {% block title %}Music Library{% endblock %}
 {% block head %}
 {{ super() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="{{ url_for('static', filename='queue.js') }}"></script>
 {% endblock %}
 {% block content %}
 <div id='songs'>
@@ -14,8 +16,8 @@
 <th class='titlecell'>Duration</th>
 <td class="rightextend"></td>
 {% for song in songs %}
-<tr class="songrow">
-<td class="songtd">{{ loop.index }}</td>
+<tr class="songrow" data-sid="{{ song.sid }}">
+<td class="songtd songindex">{{ loop.index }}</td>
 <td class="songtd">{{ song.title }}</td>
 <td class="songtd">{{ song.artist }}</td>
 <td class="songtd">{{ song.length }}</td>

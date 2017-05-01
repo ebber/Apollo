@@ -45,7 +45,7 @@ def library():
     if order == 'duration':
         songs = sorted(songs, key=lambda x: x.get_length(), reverse=toreverse)
 
-    return render_template("library.html", user=user, playlists=playlists, songs=songs, allselected=allselected, pid=playlistID)
+    return render_template("library.html", user=user, playlists=playlists, songs=songs, allselected=allselected, pid=playlistID, numsongs=len(songs))
 
 @mysite.route('/queue', methods=['GET'])
 def queue():

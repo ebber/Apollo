@@ -24,7 +24,7 @@ def addUser(email, password):
     salt = bcrypt.gensalt()
     pwhash = bcrypt.hashpw(password.encode('utf8'), salt)
 
-    cur.execute('INSERT INTO users(email, pwhash) VALUES(%s, %s)', (email, pwhash))
+    cur.execute('INSERT INTO users(email, pwhash, priviledges) VALUES(%s, %s, \'a\')', (email, pwhash))
     con.commit()
 
 def validateUser(email, password):
@@ -59,7 +59,7 @@ def getSong(songid):
 
     seconds = songtuple[3] % 60
     minutes = songtuple[3] / 60
-    length = str(minutes) + ':' + str(seconds)
+    length = str(minutes) + ':' + ('0' if seconds < 10 else '') + str(seconds)
 
     return song.Song(songtuple[0], songtuple[1], songtuple[2], length)
 
@@ -78,7 +78,7 @@ def getSongs(query, playlistid=""):
     for row in cur.fetchall():
         minutes = row[3] / 60
         seconds = row[3] % 60
-        length = str(minutes) + ':' + str(seconds)
+        length = str(minutes) + ':' + ('0' if seconds < 10 else '') + str(seconds)
         
         songs.append(song.Song(row[0], row[1], row[2], length))
 

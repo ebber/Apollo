@@ -1,15 +1,16 @@
 CREATE DATABASE final_project;
 USE final_project;
 
-DROP TABLE users;
-DROP TABLE songs;
-DROP TABLE playlists;
 DROP TABLE contains;
+DROP TABLE playlists;
+DROP TABLE songs;
+DROP TABLE users;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT NOT NULL,
     email VARCHAR(128) UNIQUE NOT NUlL,
     pwhash BINARY(60) NOT NULL,
+    priviledges VARCHAR(8) NOT NULL,
     PRIMARY KEY(id)
 );
 
