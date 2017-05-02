@@ -4,7 +4,8 @@ from ripper import config
 from ripper.ripper.ytRipper import Ripper
 from ripper.model.song import Song
 from ripper.tagging.tagger import Tagger
-from mPlayer.customplayer import mPlayer
+from mPlayer.apolloMusicPlayer.customplayer import mPlayer
+
 import logging
 
 tagger = Tagger()

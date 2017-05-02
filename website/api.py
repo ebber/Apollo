@@ -1,8 +1,12 @@
 from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
+from ..mPlayer.apolloMusicPlayer.customplayer import mPlayer
+from ..ripper.ripper.ytRipper import Ripper
 import json
 import database
 import config
 
+ripper = Ripper()
+player = mPlayer()
 api = Blueprint('api', __name__, template_folder='templates')
 
 @api.route('/api/register', methods=['POST'])
@@ -108,6 +112,7 @@ def createPlaylist():
 @api.route('/api/setVolume', methods=['POST'])
 def setVolume():
     config.volume = request.form['volume']
+    player.change_volume(config.volume)
     return ''
 
 #Set song time here
@@ -119,18 +124,22 @@ def setTime():
 #Unpause here
 @api.route('/api/play', methods=['POST'])
 def play():
+    player.play()
     return ''
 
 #Pause here
 @api.route('/api/pause', methods=['POST'])
 def pause():
+    player.pause()
     return ''
 
 #Play next song here
 @api.route('/api/nextSong', methods=['POST'])
 def nextSong():
+    player.skip()
     return ''
 
 #Download song here:
 def download(url):
+    ripper.rip(url)
     pass
