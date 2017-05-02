@@ -4,12 +4,12 @@ from ripper import config
 from ripper.ripper.ytRipper import Ripper
 from ripper.model.song import Song
 from ripper.tagging.tagger import Tagger
-#from mPlayer.customplayer import mPlayer
+from mPlayer.customplayer import mPlayer
 import logging
 
 tagger = Tagger()
 ripper = Ripper()
-player = None#mPlayer()
+player = mPlayer()
 notDone = True
 
 logger = logging.getLogger("mainLoopLogger")
@@ -44,6 +44,7 @@ def print_prompt():
     help_text = "help\n"
     help_text += " tag <directory> - tag a directory \n"
     help_text += " rip <playlist url> - rip a song or playlist from youtube \n"
+    help_text += " volume - [volume] \n"
     help_text += " q - quit"
 
     print(help_text)
@@ -81,7 +82,7 @@ while True:
         if len(cmd) == 1:
             print("seperate the command and playlist with a space")
         else:
-            player.change_volume(cmd[1])
+            player.change_volume(int(cmd[1]))
   
     elif 'q' == cmd[0]:
         break
