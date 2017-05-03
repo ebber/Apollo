@@ -1,10 +1,15 @@
-import musicplayer, logging
+import musicplayer, logging, os
 
 
 class playableSong:
     def __init__(self, fn):
         self.url = fn
-        self.f = open(fn)
+	try:
+	  self.f = open(fn)
+	except:
+	  print(os.listdir('.'))
+	  self.f = open(fn)
+	
 
     # `__eq__` is used for the peek stream management
     def __eq__(self, other):
@@ -22,8 +27,8 @@ class playableSong:
 class mPlayer:
     def __init__(self):
         # needs at least 2 things to start for some reason
-        self.queue = ["/Users/admin/Music/iTunes/iTunes Media/Music/Adrian Marcel/Unknown Album/2AM.mp3",
-                      "/Users/admin/Music/iTunes/iTunes Media/Music/Penn Masala/Unknown Album/_Down.mp3"]
+        self.queue = ["test_resources/Bed Of Roses.mp3",
+                      "test_resources/Bed Of Roses.mp3"]
         self.player = musicplayer.createPlayer()
         self.player.outSamplerate = 96000  # support high quality :)
         self.player.queue = self.gen_song_queue()
@@ -74,7 +79,7 @@ class mPlayer:
         assert (new_volume >= 0)
         assert(new_volume <= 100)
         #call(["amixer", "-D", "pulse", "sset", "Master", str(new_volume) + "%"])
-        self.player.volume = new_volume;
+        self.player.volume=new_volume;
 
 
 if __name__ == "__main__":

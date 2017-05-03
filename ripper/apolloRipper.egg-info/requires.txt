@@ -1,0 +1,4 @@
+logging
+youtube_dl
+ffprobe
+spotipy
