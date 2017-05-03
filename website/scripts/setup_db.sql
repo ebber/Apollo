@@ -19,7 +19,6 @@ CREATE TABLE songs(
     title VARCHAR(128) NOT NULL,
     artist VARCHAR(128) NOT NULL,
     length INT NOT NULL,
-    path VARCHAR(128) NOT NULL,
     PRIMARY KEY(id)
 );
 
