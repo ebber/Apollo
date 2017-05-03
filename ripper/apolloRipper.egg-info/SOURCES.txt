@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README
+setup.cfg
+setup.py
+apolloRipper/__init__.py
+apolloRipper/config.py
+apolloRipper/run.py
+apolloRipper.egg-info/PKG-INFO
+apolloRipper.egg-info/SOURCES.txt
+apolloRipper.egg-info/dependency_links.txt
+apolloRipper.egg-info/requires.txt
+apolloRipper.egg-info/top_level.txt

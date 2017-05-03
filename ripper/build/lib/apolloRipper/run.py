@@ -1,16 +1,13 @@
 import os
 
-from ripper.apolloRipper import config
-from ripper.apolloRipper.ripper.ytRipper import Ripper
-from ripper.apolloRipper.model.song import Song
-from ripper.apolloRipper.tagging.tagger import Tagger
-from mPlayer.apolloMusicPlayer.customplayer import mPlayer
-
+import config
+from ripper.ytRipper import Ripper
+from model.song import Song
+from tagging.tagger import Tagger
 import logging
 
 tagger = Tagger()
 ripper = Ripper()
-player = mPlayer()
 notDone = True
 
 logger = logging.getLogger("mainLoopLogger")
@@ -45,7 +42,6 @@ def print_prompt():
     help_text = "help\n"
     help_text += " tag <directory> - tag a directory \n"
     help_text += " rip <playlist url> - rip a song or playlist from youtube \n"
-    help_text += " volume - [volume] \n"
     help_text += " q - quit"
 
     print(help_text)
@@ -65,25 +61,6 @@ while True:
             print("seperate the command and playlist with a space")
         else:
             rip_playlist(cmd[1])
-    elif "play" == cmd[0]:
-            player.play()
-    elif "pause" == cmd[0]:
-	    player.pause()
-    elif "skip" == cmd[0]:
-	    player.skip()
-    elif "list" == cmd[0]:
-	    player.print_queue();
-    elif "queue" == cmd[0]:
-        if len(cmd) == 1:
-            print("seperate the command and playlist with a space")
-        else:
-            player.add_song_to_queue(cmd[1])
-    elif "volume" == cmd[0]:
-        if len(cmd) == 1:
-            print("seperate the command and playlist with a space")
-        else:
-            player.change_volume(int(cmd[1]))
-  
     elif 'q' == cmd[0]:
         break
     else:

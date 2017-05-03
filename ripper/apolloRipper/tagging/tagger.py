@@ -1,7 +1,7 @@
-from ripper.model.song import Song
+from ripper.apolloRipper.model.song import Song
 import logging
 
-from ripper.tagging.spotify_meta_retriever import spotify_metaRetriever
+from ripper.apolloRipper.tagging.spotify_meta_retriever import spotify_metaRetriever
 
 class Tagger():
 
