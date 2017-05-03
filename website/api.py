@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
 from ..mPlayer.apolloMusicPlayer.customplayer import mPlayer
-from ..ripper.ripper.ytRipper import Ripper
+from ..ripper.apolloRipper.ripper.ytRipper import Ripper
 from threading import Thread
 import json
 import database
