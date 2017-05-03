@@ -1,11 +1,7 @@
 from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
 from ..mPlayer.apolloMusicPlayer.customplayer import mPlayer
-<<<<<<< HEAD
 from ..ripper.apolloRipper.ripper.ytRipper import Ripper
 from threading import Thread
-=======
-from ..ripper.ripper.ytRipper import Ripper
->>>>>>> parent of b0c7e88... Search working, bugs in player
 import json
 import database
 import config
