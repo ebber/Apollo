@@ -1,9 +1,11 @@
 from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
 from ..mPlayer.apolloMusicPlayer.customplayer import mPlayer
 from ..ripper.ripper.ytRipper import Ripper
+from threading import Thread
 import json
 import database
 import config
+import search
 
 ripper = Ripper()
 player = mPlayer()
@@ -106,6 +108,20 @@ def createPlaylist():
     database.createPlaylist(userid, title)
     return ''
 
+@api.route('/api/libraryAdd', methods=['POST'])
+def libraryAdd():
+    title = request.form['title']
+    url = search.get_url(title)
+    thread = Thread(target=download, args=(url,))
+    thread.start()
+
+    title = search.get_song_title(url.replace('https://www.youtube.com/watch?v=', ''))
+    artist = ''
+    length = 0
+    
+    database.addSong(title, artist, length, 'songs/untaggedSongs/' + title)
+    return redirect(url_for('mysite.library'))
+
 ###Web hooks:
 
 #Set volume here
@@ -142,4 +158,3 @@ def nextSong():
 #Download song here:
 def download(url):
     ripper.rip(url)
-    pass

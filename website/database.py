@@ -6,6 +6,13 @@ import song
 def connect():
     return db.connect(host='localhost', user='root', passwd=os.environ['ROOTPASSWD'], db='final_project')
 
+def addSong(title, artist, length, path):
+    con = connect()
+    cur = con.cursor()
+
+    cur.execute('INSERT INTO songs(title, artist, length, path) VALUES(%s, %s, %s, %s)', (title, artist, length, path))
+    con.commit()
+
 def fetchUser(email):
     con = connect()
     cur = con.cursor()

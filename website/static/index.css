@@ -50,6 +50,10 @@ body {
     right: 10px;
 }
 
+.left {
+    float: left;
+}
+
 .loginform {
     font-size: 16px;
     padding: 30px 30px 15px 30px;
@@ -341,4 +345,15 @@ label
 #createform input {
     display: none;
     margin-top: 5px;
+}
+
+#controlbuttons {
+    position: absolute;
+    top: 85%;
+    left: 44%;
+    width: 12%;
+}
+
+#controlbuttons button {
+    width: 30%;
 }
