@@ -27,7 +27,7 @@
 <div id="libraryAdd">
 <form id="downloadform" action="/api/libraryAdd" method="post">
     <input type="text" name="title" />
-    <input type="hidden" name="csrf" value="{{ csrf_token() }}" />
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     <input type="submit" value="Download and Add" />
 </form>
 </div>
