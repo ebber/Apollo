@@ -1,10 +1,11 @@
 
 class Song:
-    def __init__(self, sid, title, artist, length):
+    def __init__(self, sid, title, artist, length, path):
         self.sid = sid
         self.title = title
         self.artist = artist
         self.length = length
+        self.path = path
 
     def get_length(self):
         time = self.length.split(':')

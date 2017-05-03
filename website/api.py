@@ -63,6 +63,7 @@ def queueAdd():
     newsong = database.getSong(sid)
     config.queue.append(newsong)
     pos = len(config.queue)
+    player.queue = map(lambda x: x.path, config.queue)
     return '{"type": "success", "song": "' + newsong.title + '", "position": ' + str(pos) + '}'
 
 @api.route('/api/playlistAdd', methods=['POST'])
@@ -98,6 +99,7 @@ def playlistRemove():
 @api.route('/api/queueUpdate', methods=['POST'])
 def queueUpdate():
     config.queue = map(lambda x: database.getSong(x), request.form.getlist('queue[]'))
+    player.queue = map(lambda x: x.path, config.queue)
     return ''
 
 @api.route('/api/createPlaylist', methods=['POST'])
@@ -152,6 +154,7 @@ def pause():
 #Play next song here
 @api.route('/api/nextSong', methods=['POST'])
 def nextSong():
+    config.queue = config.queue[1:]
     player.skip()
     return ''
 

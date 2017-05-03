@@ -61,14 +61,14 @@ def getSong(songid):
     con = connect()
     cur = con.cursor()
     
-    cur.execute('SELECT id, title, artist, length FROM songs WHERE id=%s', (songid,))
+    cur.execute('SELECT id, title, artist, length, path FROM songs WHERE id=%s', (songid,))
     songtuple = cur.fetchone()
 
     seconds = songtuple[3] % 60
     minutes = songtuple[3] / 60
     length = str(minutes) + ':' + ('0' if seconds < 10 else '') + str(seconds)
 
-    return song.Song(songtuple[0], songtuple[1], songtuple[2], length)
+    return song.Song(songtuple[0], songtuple[1], songtuple[2], length, songtuple[4])
 
 def getSongs(query, playlistid=""):
     con = connect()
@@ -77,9 +77,9 @@ def getSongs(query, playlistid=""):
     query = '%' + query + '%'
 
     if playlistid == "":
-        cur.execute('SELECT id, title, artist, length FROM songs WHERE title LIKE %s', (query,)) 
+        cur.execute('SELECT id, title, artist, length, path FROM songs WHERE title LIKE %s', (query,)) 
     else:
-        cur.execute('SELECT id, title, artist, length FROM songs WHERE title LIKE %s AND id IN (SELECT songid FROM contains WHERE playlistID=%s)', (query, playlistid))
+        cur.execute('SELECT id, title, artist, length, path FROM songs WHERE title LIKE %s AND id IN (SELECT songid FROM contains WHERE playlistID=%s)', (query, playlistid))
 
     songs = []
     for row in cur.fetchall():
@@ -87,7 +87,7 @@ def getSongs(query, playlistid=""):
         seconds = row[3] % 60
         length = str(minutes) + ':' + ('0' if seconds < 10 else '') + str(seconds)
         
-        songs.append(song.Song(row[0], row[1], row[2], length))
+        songs.append(song.Song(row[0], row[1], row[2], length, row[4]))
 
     return songs    
 
